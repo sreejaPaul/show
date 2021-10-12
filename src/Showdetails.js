@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Showdetails.css';
-import { useParams } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCompactDisc, faExternalLinkSquareAlt, faHome } from '@fortawesome/free-solid-svg-icons';
+import { faCompactDisc, faExternalLinkSquareAlt, faHome, faTicketAlt } from '@fortawesome/free-solid-svg-icons';
 import { faImdb } from '@fortawesome/free-brands-svg-icons';
 import {Link} from 'react-router-dom';
 
@@ -15,6 +15,7 @@ function Showdetails(props) {
     const [imdblink, setimdblink] = useState("");
     const [date, setdate] = useState("");
     const[language,setlang] = useState("");
+    const[passimage,setpass] = useState("");
 
     const showid = parseInt(useParams().ShowId);
     useEffect(() => {
@@ -32,6 +33,7 @@ function Showdetails(props) {
         setimdblink(showarray[0].show.externals.imdb);
         setdate(showarray[0].show.premiered);
         setlang(showarray[0].show.language);
+        setpass(showarray[0].show.image.medium);
     }, [showid,props.resultarray]);
 
 
@@ -48,6 +50,14 @@ function Showdetails(props) {
             openInNewTab(watchlink);
         else if (targetid === "IMDBlink")
             openInNewTab("https://www.imdb.com/title/" + imdblink + "/");
+    }
+    const bookTickiet = ()=>{
+        const info = {
+            mName: name,
+            mLang : language,
+            mPic : passimage,
+        }
+        props.func(info);
     }
     return (
         <div >
@@ -100,6 +110,12 @@ function Showdetails(props) {
                             <button className="btn">
                                 <FontAwesomeIcon icon={faHome} size="lg" style={{ marginRight: "10px" }} />
                                 {"Home"}
+                            </button>
+                        </Link>
+                        <Link to="/formmaking">
+                            <button className="btn" onClick={bookTickiet}>
+                                <FontAwesomeIcon icon={faTicketAlt} size="lg" style={{ marginRight: "10px" }}/>
+                                {"Book Ticket"}
                             </button>
                         </Link>
                     </div>

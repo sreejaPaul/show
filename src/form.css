@@ -1,0 +1,32 @@
+.booking{
+    overflow:hidden;
+    margin-top: 130px;
+}
+
+.left{
+    padding: 32px;
+    margin-left: 20px;
+    float:left;
+}
+.right{
+    padding: 32px;
+    float:left;
+}
+
+.topic{
+    font-weight: bold;
+    font-size: large;
+    width: 25px;
+}
+.formdiv{
+    margin-top: 20px;
+}
+.value{
+    font-weight: bold;
+    margin-left: 15px;
+}
+#bookbtn{
+    margin: 30px;
+    margin-left: 400px;
+    font-weight: bold;
+}
